@@ -36,6 +36,10 @@
   .nav-links{position: absolute; left: 50%; transform: translateX(-50%); display:flex;gap:2.5rem;list-style:none}
   .nav-links a{color:var(--text-mid);text-decoration:none;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
   .nav-links a:hover{color:var(--purple)}
+  .nav-right{display:flex;align-items:center;gap:1.2rem}
+  .nav-member{color:var(--text-dim);text-decoration:none;font-size:0.72rem;letter-spacing:0.1em;transition:color 0.3s;white-space:nowrap}
+  .nav-member:hover{color:var(--purple-light)}
+  .nav-member span{color:var(--purple);margin-left:0.3rem;font-size:0.65rem}
   .nav-cta{background:transparent;border:1px solid var(--purple);color:var(--purple);padding:0.55rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none}
   .nav-cta:hover{background:var(--purple);color:var(--black)}
 
@@ -258,6 +262,8 @@
 
   /* ── 640px — mobile ── */
   @media(max-width:640px){
+    .nav-member { font-size: 0; }
+    .nav-member span { font-size: 0.85rem; margin-left: 0; }
     h1 { line-height: 1; }
     .hero-actions { flex-direction: column; width: 100%; }
     .btn-primary, .btn-secondary { width: 100%; text-align: center; }
@@ -318,7 +324,10 @@
     <li><a href="#pricing">Pricing</a></li>
     <li><a href="#how">How It Works</a></li>
   </ul>
-  <a href="#pricing" class="nav-cta">Get Access</a>
+  <div class="nav-right">
+    <a href="https://chat.projectzenith.co" class="nav-member">Already a member?<span>→</span></a>
+    <a href="#pricing" class="nav-cta">Get Access</a>
+  </div>
 </nav>
 
 <section class="hero">
