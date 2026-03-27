@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Zenith — Elite AI Tutors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Noto+Kufi+Arabic:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  
+  html, body { overflow-x: hidden; }
+:root {
+    --black: #07070a;
+    --white: #f0eef8;
+    --purple: #9b6dff;
+    --purple-light: #c4a8ff;
+    --purple-dim: #5c3faa;
+    --surface: #0d0c14;
+    --surface-2: #13111e;
+    --border: rgba(155,109,255,0.18);
+    --border-dim: rgba(155,109,255,0.08);
+    --text-dim: rgba(240,238,248,0.4);
+    --text-mid: rgba(240,238,248,0.65);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;width:100%;overflow-x:hidden}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;width:100%;min-height:100vh}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");pointer-events:none;z-index:2;opacity:0.4}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;background:linear-gradient(to bottom,rgba(7,7,10,0.96),transparent);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color 0.3s}
+  nav.scrolled{border-color:var(--border-dim)}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple)}
+  .nav-logo span{color:var(--white)}
+  .nav-links{position: absolute; left: 50%; transform: translateX(-50%); display:flex;gap:2.5rem;list-style:none}
+  .nav-links a{color:var(--text-mid);text-decoration:none;font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
+  .nav-links a:hover{color:var(--purple)}
+  .nav-cta{background:transparent;border:1px solid var(--purple);color:var(--purple);padding:0.55rem 1.5rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none}
+  .nav-cta:hover{background:var(--purple);color:var(--black)}
+
+  /* HERO */
+  .hero{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 8rem;position:relative;overflow:clip}
+  .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 50% -5%,rgba(155,109,255,0.12) 0%,transparent 65%),radial-gradient(ellipse 35% 35% at 15% 85%,rgba(155,109,255,0.05) 0%,transparent 55%),radial-gradient(ellipse 35% 35% at 85% 65%,rgba(155,109,255,0.04) 0%,transparent 55%)}
+  .hero-line{position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:100px;background:linear-gradient(to bottom,transparent,var(--purple-dim))}
+  .hero-arabic{font-family:'Noto Kufi Arabic',sans-serif;font-size:0.82rem;letter-spacing:0.2em;color:rgba(155,109,255,0.7);margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.8s ease 0.3s forwards}
+  .hero-tag{display:inline-flex;align-items:center;gap:0.6rem;border:1px solid var(--border);padding:0.38rem 1.2rem;font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.8s ease 0.5s forwards}
+  .hero-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--purple);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.75)}}
+  h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3.8rem,9.5vw,8.5rem);font-weight:300;line-height:0.93;letter-spacing:-0.02em;margin-bottom:0.4rem;opacity:0;animation:fadeUp 1s ease 0.7s forwards}
+  h1 em{font-style:italic;color:var(--purple)}
+  .hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,3rem);font-weight:300;color:var(--text-mid);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease 0.9s forwards}
+  .hero-desc{max-width:500px;font-size:0.92rem;line-height:1.85;color:var(--text-dim);margin-bottom:3rem;opacity:0;animation:fadeUp 1s ease 1.1s forwards}
+  .hero-desc strong{color:var(--text-mid);font-weight:400}
+  .hero-actions{display:flex;gap:1rem;align-items:center;justify-content:center;opacity:0;animation:fadeUp 1s ease 1.3s forwards}
+  .btn-primary{background:var(--purple);color:var(--black);border:none;padding:1rem 2.5rem;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+  .btn-primary:hover{background:var(--purple-light);transform:translateY(-2px);box-shadow:0 10px 35px rgba(155,109,255,0.35)}
+  .btn-secondary{background:transparent;color:var(--text-mid);border:1px solid rgba(240,238,248,0.14);padding:1rem 2.5rem;font-family:'DM Sans',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-block}
+  .btn-secondary:hover{border-color:var(--purple);color:var(--purple)}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .stat{padding:3rem 2rem;border-right:1px solid var(--border);text-align:center}
+  .stat:last-child{border-right:none}
+  .stat-number{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:var(--purple);line-height:1;margin-bottom:0.5rem}
+  .stat-label{font-size:0.7rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-dim)}
+
+  /* SECTIONS */
+  section{padding:8rem 4rem}
+  .section-tag{font-size:0.66rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--purple);margin-bottom:1rem;display:block}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:300;line-height:1.08;max-width:580px}
+  .section-title em{font-style:italic;color:var(--purple)}
+  .section-header{margin-bottom:4.5rem}
+
+  /* MENTORS */
+  .mentors{background:var(--surface)}
+  .divider{display:flex;align-items:center;gap:1.5rem;margin:2.5rem 0}
+  .divider-line{flex:1;height:1px;background:var(--border)}
+  .divider-text{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--purple-dim);white-space:nowrap}
+  .mentors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+  .mentor-card{background:var(--surface);padding:2.5rem;position:relative;overflow:hidden;transition:background 0.4s}
+  .mentor-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--purple),transparent);opacity:0;transition:opacity 0.4s}
+  .mentor-card:hover{background:var(--surface-2)}
+  .mentor-card:hover::before{opacity:1}
+  .mentor-board{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--purple-dim);margin-bottom:1.1rem;display:flex;align-items:center;gap:0.5rem}
+  .mentor-board::before{content:'';width:14px;height:1px;background:var(--purple-dim)}
+  .mentor-name{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:400;margin-bottom:0.25rem}
+  .mentor-subject{font-size:0.75rem;color:var(--purple);letter-spacing:0.07em;margin-bottom:1.1rem}
+  .mentor-desc{font-size:0.8rem;line-height:1.75;color:var(--text-dim);margin-bottom:1.4rem}
+  .mentor-tags{display:flex;flex-wrap:wrap;gap:0.35rem}
+  .mentor-tag{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid rgba(240,238,248,0.1);padding:0.18rem 0.55rem;transition:all 0.3s}
+  .mentor-card:hover .mentor-tag{border-color:var(--border);color:var(--purple-dim)}
+  .mentor-card.wide{grid-column:span 3;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+  .mentor-card.wide .mentor-tags{align-self:center;max-width:280px}
+  .mentor-card.bonus{grid-column:span 3;display:flex;align-items:center;gap:3rem;background:linear-gradient(135deg,var(--surface-2),rgba(155,109,255,0.04))}
+  .bonus-badge{flex-shrink:0;width:110px;height:110px;border:1px solid var(--border);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle,rgba(155,109,255,0.08),transparent)}
+  .bonus-badge-text{font-family:'Cormorant Garamond',serif;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);line-height:1.5;text-align:center}
+
+  /* PRICING */
+  .pricing{background:var(--black)}
+  .pricing-tabs{display:flex;border:1px solid var(--border);width:fit-content;margin:0 auto 3.5rem}
+  .pricing-tab{padding:0.75rem 2.5rem;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;background:transparent;color:var(--text-dim);border:none;font-family:'DM Sans',sans-serif}
+  .pricing-tab:not(:last-child){border-right:1px solid var(--border)}
+  .pricing-tab.active{background:var(--purple);color:var(--black);font-weight:500}
+  .pricing-tab:not(.active):hover{color:var(--purple)}
+  .pricing-panel{display:none}
+  .pricing-panel.active{display:block}
+
+  /* SEMESTER CARDS */
+  .semester-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:1100px;margin:0 auto}
+  .pricing-card{border:1px solid var(--border);padding:3rem 2.5rem;position:relative;transition:border-color 0.4s,transform 0.4s;background:var(--surface);display:flex;flex-direction:column}
+  .pricing-card:hover{border-color:var(--purple-dim);transform:translateY(-4px)}
+  .pricing-card.featured{border-color:var(--purple);background:linear-gradient(135deg,var(--surface-2),rgba(155,109,255,0.06))}
+  .pricing-card.featured::before{content:'Best Value';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--purple);color:var(--black);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.22rem 1rem;font-weight:500;white-space:nowrap}
+  .pricing-tier{font-size:0.62rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--purple-dim);margin-bottom:0.8rem}
+  .pricing-name{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:400;margin-bottom:0.4rem}
+  .pricing-desc{font-size:0.78rem;color:var(--text-dim);margin-bottom:1.8rem;line-height:1.65}
+  .pricing-price{margin-bottom:1.8rem;padding-bottom:1.8rem;border-bottom:1px solid var(--border-dim)}
+  .price-amount{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;color:var(--purple);line-height:1}
+  .price-currency{font-size:1.3rem;vertical-align:super;color:var(--purple-dim)}
+  .price-period{font-size:0.72rem;color:var(--text-dim);letter-spacing:0.08em;margin-top:0.3rem}
+  .price-original{font-size:0.76rem;color:var(--text-dim);text-decoration:line-through;margin-top:0.2rem}
+  .price-saving{display:inline-block;margin-top:0.4rem;background:rgba(155,109,255,0.12);border:1px solid var(--border);color:var(--purple);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.15rem 0.6rem}
+  .pricing-features{list-style:none;margin-bottom:2.2rem;flex:1}
+  .pricing-features li{font-size:0.8rem;color:var(--text-mid);padding:0.55rem 0;border-bottom:1px solid rgba(240,238,248,0.04);display:flex;align-items:center;gap:0.75rem;line-height:1.4}
+  .pricing-features li::before{content:'✦';color:var(--purple);font-size:0.48rem;flex-shrink:0}
+  .pricing-cta{display:block;text-align:center;padding:0.88rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.16em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;cursor:pointer;border:none;width:100%}
+  .pricing-cta.outline{background:transparent;border:1px solid var(--border);color:var(--text-mid)}
+  .pricing-cta.outline:hover{border-color:var(--purple);color:var(--purple)}
+  .pricing-cta.solid{background:var(--purple);color:var(--black);font-weight:500}
+  .pricing-cta.solid:hover{background:var(--purple-light);box-shadow:0 8px 28px rgba(155,109,255,0.35)}
+
+  /* MONTHLY CARDS */
+  .monthly-intro{max-width:600px;margin-bottom:2.5rem}
+  .monthly-intro p{font-size:0.85rem;line-height:1.85;color:var(--text-dim)}
+  .monthly-intro strong{color:var(--purple);font-weight:400}
+  .monthly-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:100%}
+  .monthly-card{border:1px solid var(--border);background:var(--surface);position:relative;transition:border-color 0.4s,transform 0.4s;overflow:hidden}
+  .monthly-card:hover{border-color:var(--purple-dim);transform:translateY(-3px)}
+  .monthly-card.featured{border-color:var(--purple);background:linear-gradient(135deg,var(--surface-2),rgba(155,109,255,0.05))}
+  .monthly-card.featured::before{content:'Most Popular';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--purple);color:var(--black);font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.22rem 1rem;font-weight:500;white-space:nowrap}
+  .monthly-card-header{padding:2rem 2.5rem 1.5rem;border-bottom:1px solid var(--border-dim);display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}
+  .monthly-card-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:0.2rem}
+  .monthly-card-sub{font-size:0.7rem;color:var(--purple);letter-spacing:0.08em}
+  .monthly-price-block{text-align:right;flex-shrink:0}
+  .monthly-price{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:300;color:var(--purple);line-height:1}
+  .monthly-price .curr{font-size:1rem;vertical-align:super;color:var(--purple-dim)}
+  .monthly-price-label{font-size:0.65rem;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.2rem}
+  .monthly-card-body{padding:1.5rem 2.5rem 2rem}
+  .monthly-subjects{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:1.4rem}
+  .monthly-subject-tag{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);border:1px solid rgba(240,238,248,0.1);padding:0.18rem 0.55rem}
+  .monthly-perks{list-style:none;margin-bottom:1.4rem}
+  .monthly-perks li{font-size:0.78rem;color:var(--text-mid);padding:0.42rem 0;display:flex;align-items:center;gap:0.7rem;border-bottom:1px solid rgba(240,238,248,0.04)}
+  .monthly-perks li::before{content:'✦';color:var(--purple);font-size:0.44rem;flex-shrink:0}
+  .monthly-note{font-size:0.72rem;color:var(--text-dim);line-height:1.6;border-top:1px solid var(--border-dim);padding-top:1rem;margin-bottom:1.4rem}
+  .pricing-compare{margin-top:2.5rem;max-width:860px;border:1px solid var(--border-dim);padding:1.5rem 2rem;background:var(--surface);display:flex;align-items:center;gap:1.5rem}
+  .pricing-compare p{font-size:0.8rem;color:var(--text-dim);line-height:1.7}
+  .pricing-compare strong{color:var(--purple);font-weight:400}
+  .individual-note{margin-top:2rem;font-size:0.76rem;color:var(--text-dim);letter-spacing:0.06em;line-height:1.7}
+  .individual-note strong{color:var(--text-mid);font-weight:400}
+
+  /* HOW */
+  .how{background:var(--surface)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:4rem;max-width:880px}
+  .step-number{font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;color:rgba(155,109,255,0.1);line-height:1;margin-bottom:1rem;position:relative}
+  .step-number::after{content:attr(data-n);position:absolute;top:50%;left:0;transform:translateY(-50%);font-size:0.66rem;letter-spacing:0.2em;color:var(--purple);font-family:'DM Sans',sans-serif;font-weight:400}
+  .step-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:400;margin-bottom:0.7rem}
+  .step-desc{font-size:0.8rem;line-height:1.82;color:var(--text-dim)}
+
+  /* QUOTE */
+  .quote-section{padding:6rem 4rem;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--black)}
+  .quote-mark{font-family:'Cormorant Garamond',serif;font-size:6rem;color:var(--purple);opacity:0.25;line-height:0.5;margin-bottom:1.2rem;display:block}
+  .quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:300;font-style:italic;max-width:680px;margin:0 auto 1.8rem;line-height:1.55}
+  .quote-arabic{font-family:'Noto Kufi Arabic',sans-serif;font-size:1.05rem;color:rgba(155,109,255,0.65);direction:rtl}
+
+  /* FAQ */
+  .faq{background:var(--black)}
+  .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);max-width:900px}
+  .faq-item{background:var(--surface);padding:2rem 2.5rem;transition:background 0.3s}
+  .faq-item:hover{background:var(--surface-2)}
+  .faq-q{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:400;margin-bottom:0.7rem}
+  .faq-a{font-size:0.8rem;line-height:1.82;color:var(--text-dim)}
+
+  /* CTA FOOTER */
+  .cta-footer{padding:9rem 4rem;text-align:center;background:var(--surface);position:relative;overflow:hidden}
+  .cta-footer::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(700px,100%);height:320px;background:radial-gradient(ellipse,rgba(155,109,255,0.07),transparent 70%);pointer-events:none}
+  .cta-footer h2{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6.5vw,5.5rem);font-weight:300;line-height:1.05;margin-bottom:1.4rem}
+  .cta-footer h2 em{font-style:italic;color:var(--purple)}
+  .cta-footer p{font-size:0.88rem;color:var(--text-dim);max-width:380px;margin:0 auto 2.8rem;line-height:1.85}
+
+  /* FOOTER */
+  footer{padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple)}
+  .footer-logo span{color:var(--text-dim)}
+  .footer-copy{margin: 0; font-size:0.7rem;color:var(--text-dim);letter-spacing:0.08em}
+  .footer-links{margin: 0; padding: 0; align-items: center; display:flex;gap:2rem;list-style:none}
+  .footer-links a{font-size:0.7rem;color:var(--text-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s}
+  .footer-links a:hover{color:var(--purple)}
+
+  /* REVEAL */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.8s ease,transform 0.8s ease}
+  .reveal.visible{opacity:1;transform:translateY(0)}
+  .reveal-delay-1{transition-delay:0.1s}
+  .reveal-delay-2{transition-delay:0.2s}
+  .reveal-delay-3{transition-delay:0.3s}
+
+  /* RESPONSIVE */
+
+  /* ── Global container fix — content never stretches too wide ── */
+  nav { max-width: 100%; }
+  section { max-width: 100%; }
+
+  /* ── Use fluid padding everywhere instead of fixed 4rem ── */
+  nav { padding: 1.5rem clamp(1.25rem, 5vw, 4rem); }
+  section { padding: clamp(4rem, 8vw, 8rem) clamp(1.25rem, 5vw, 4rem); }
+  .quote-section { padding: clamp(3rem, 6vw, 6rem) clamp(1.25rem, 5vw, 4rem); }
+  .cta-footer { padding: clamp(5rem, 9vw, 9rem) clamp(1.25rem, 5vw, 4rem); }
+  footer { padding: 2.5rem clamp(1.25rem, 5vw, 4rem); }
+
+  /* ── 1280px — very wide screens, cap content width ── */
+  @media(min-width:1280px){
+    .semester-grid { max-width: 1200px; margin: 0 auto; }
+    .mentors-grid { max-width: 100%; }
+    .faq-grid { max-width: 1000px; }
+    .steps { max-width: 960px; }
+    .pricing-compare { max-width: 1000px; }
+  }
+
+  /* ── 1024px — tablet landscape / small laptop ── */
+  @media(max-width:1024px){
+    .nav-links {position: absolute; left: 50%; transform: translateX(-50%);  display: none; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .mentors-grid { grid-template-columns: 1fr 1fr; }
+    .mentor-card.wide { grid-column: span 2; display: block; }
+    .mentor-card.bonus { grid-column: span 2; }
+    .mentor-card.wide .mentor-tags { max-width: 100%; margin-top: 1.2rem; }
+    .semester-grid { grid-template-columns: 1fr 1fr; max-width: 100%; }
+    .monthly-grid { grid-template-columns: repeat(2,1fr); max-width: 100%; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; max-width: 100%; }
+    .faq-grid { max-width: 100%; }
+    footer { flex-wrap: wrap; gap: 1rem; justify-content: center; text-align: center; }
+    .footer-links {margin: 0; padding: 0; align-items: center;  flex-wrap: wrap; justify-content: center; gap: 1rem; }
+    .divider-text { white-space: normal; text-align: center; font-size: 0.58rem; }
+  }
+
+  /* ── 860px — tablet portrait ── */
+  @media(max-width:860px){
+    .semester-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    .monthly-grid { grid-template-columns: 1fr 1fr; }
+    .steps { grid-template-columns: 1fr; gap: 2rem; }
+    .mentor-card.wide { grid-column: span 2; }
+    .mentor-card.bonus { grid-column: span 2; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .pricing-compare { flex-direction: column; gap: 1rem; }
+    .pricing-tabs { width: 100%; }
+    .pricing-tab { flex: 1; text-align: center; padding: 0.75rem 1rem; }
+  }
+
+  /* ── 640px — mobile ── */
+  @media(max-width:640px){
+    h1 { line-height: 1; }
+    .hero-actions { flex-direction: column; width: 100%; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .stat { padding: 2rem 1rem; }
+    .stat-number { font-size: 2.8rem; }
+    .mentors-grid { grid-template-columns: 1fr; }
+    .mentor-card.wide { grid-column: span 1; display: block; }
+    .mentor-card.bonus { grid-column: span 1; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .monthly-grid { grid-template-columns: 1fr; }
+    .monthly-card-header { flex-direction: column; gap: 0.5rem; }
+    .monthly-price-block { text-align: left; }
+    .faq-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: center; gap: 1.2rem; text-align: center; }
+    .footer-links {margin: 0; padding: 0; align-items: center;  flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+    .footer-copy {margin: 0;  order: 3; }
+    .divider { flex-direction: column; gap: 0.5rem; }
+    .divider-line { width: 100%; }
+    .divider-text { white-space: normal; text-align: center; }
+    .pricing-compare { padding: 1rem 1.2rem; }
+    .individual-note { text-align: center; }
+    .cta-footer::before { width: 100%; }
+  }
+
+  /* ── 420px — small mobile ── */
+  @media(max-width:420px){
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat-number { font-size: 2.4rem; }
+    .mentor-card { padding: 1.8rem; }
+    .pricing-card { padding: 2rem 1.5rem; }
+    .monthly-card-header { padding: 1.5rem 1.5rem 1.2rem; }
+    .monthly-card-body { padding: 1.2rem 1.5rem 1.5rem; }
+    .faq-item { padding: 1.5rem; }
+    .pricing-tab { font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.75rem 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <a href="#" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="36" height="36" style="flex-shrink:0;">
+      <defs>
+        <marker id="nav-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#c4a8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect width="44" height="44" rx="10" fill="#13111e"/>
+      <line x1="9" y1="11" x2="35" y2="11" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="35" y1="11" x2="9"  y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="9" y1="33" x2="35" y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="13" y1="27" x2="29" y2="16" stroke="#c4a8ff" stroke-width="3" stroke-linecap="round" marker-end="url(#nav-arr)"/>
+    </svg>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);">Project<span style="color:var(--white);"> Zenith</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mentors">Mentors</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#how">How It Works</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Get Access</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-line"></div>
+  <p class="hero-arabic">مشروع زينيث — مدرسك النخبة</p>
+  <div class="hero-tag">Now Available — IGCSE &amp; Thanaweya Amma</div>
+  <h1>Meet Your<br><em>Elite</em> Tutors.</h1>
+  <p class="hero-sub">Available at 3am.</p>
+  <p class="hero-desc">Nine AI-powered mentors — each built for a single subject, a single exam board, and one goal: your <strong>A* or 100%</strong>. Not generic AI. A specialist who knows every trap question from 2016 to 2025.</p>
+  <div class="hero-actions">
+    <a href="#pricing" class="btn-primary">View Pricing</a>
+    <a href="#mentors" class="btn-secondary">Meet the Mentors</a>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat reveal"><div class="stat-number">9</div><div class="stat-label">Elite Mentors</div></div>
+  <div class="stat reveal reveal-delay-1"><div class="stat-number">2</div><div class="stat-label">Exam Boards</div></div>
+  <div class="stat reveal reveal-delay-2"><div class="stat-number">10</div><div class="stat-label">Years of Past Papers</div></div>
+  <div class="stat reveal reveal-delay-3"><div class="stat-number">24/7</div><div class="stat-label">Always Available</div></div>
+</div>
+
+<section class="mentors" id="mentors">
+  <div class="section-header reveal">
+    <span class="section-tag">The Faculty</span>
+    <h2 class="section-title">Every mentor.<br><em>One subject.</em><br>Zero compromise.</h2>
+  </div>
+
+  <div class="mentors-grid">
+    <div class="mentor-card" style="grid-column:1/-1;padding:1.2rem 2.5rem;">
+      <div class="divider" style="margin:0;"><div class="divider-line"></div><div class="divider-text">IGCSE — Cambridge 0610/0620/0625/0580 · Edexcel 4BI1/4CH1/4PH1/4MA1</div><div class="divider-line"></div></div>
+    </div>
+    <div class="mentor-card reveal">
+      <div class="mentor-board">IGCSE Biology</div>
+      <div class="mentor-name">Prof. Andrew</div>
+      <div class="mentor-subject">Cambridge 0610 · Edexcel 4BI1</div>
+      <p class="mentor-desc">Master of mark scheme language, Paper 6 ATP, command words, and the exact examiner complaints that cost students marks year after year.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Command Words</span><span class="mentor-tag">Paper 6 ATP</span><span class="mentor-tag">Examiner Reports</span><span class="mentor-tag">Keyword Lock</span></div>
+    </div>
+    <div class="mentor-card reveal reveal-delay-1">
+      <div class="mentor-board">IGCSE Chemistry</div>
+      <div class="mentor-name">Prof. Antoine</div>
+      <div class="mentor-subject">Cambridge 0620 · Edexcel 4CH1</div>
+      <p class="mentor-desc">Qualitative analysis, organic reaction conditions, the moles ladder, and electrolysis traps — every mark scheme keyword, every time.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Ion Tests</span><span class="mentor-tag">Organic Roadmap</span><span class="mentor-tag">Moles Ladder</span><span class="mentor-tag">Electrochemistry</span></div>
+    </div>
+    <div class="mentor-card reveal reveal-delay-2">
+      <div class="mentor-board">IGCSE Physics</div>
+      <div class="mentor-name">Prof. Erwin</div>
+      <div class="mentor-subject">Cambridge 0625 · Edexcel 4PH1</div>
+      <p class="mentor-desc">Every formula — given or must-memorise. Every unit trap. Built around the CAIE equation sheet so nothing is left to chance.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Equation Sheet</span><span class="mentor-tag">Unit Guardian</span><span class="mentor-tag">Graph Mastery</span><span class="mentor-tag">Sig Figures</span></div>
+    </div>
+    <div class="mentor-card wide reveal reveal-delay-1">
+      <div>
+        <div class="mentor-board">IGCSE Mathematics</div>
+        <div class="mentor-name">Prof. Archimedes</div>
+        <div class="mentor-subject">Cambridge 0580 · Additional Math 0606 · Edexcel 4MA1</div>
+        <p class="mentor-desc" style="max-width:520px;">Three syllabuses. Six branch frameworks. M marks, A marks, B marks — every step labelled. The only Math mentor that tells you exactly which mark you just earned.</p>
+      </div>
+      <div class="mentor-tags"><span class="mentor-tag">Mark Scheme Hunter</span><span class="mentor-tag">Show That Protocol</span><span class="mentor-tag">Circle Theorems</span><span class="mentor-tag">Calculus (0606)</span><span class="mentor-tag">Transformations</span><span class="mentor-tag">Statistics</span></div>
+    </div>
+
+    <div class="mentor-card" style="grid-column:1/-1;padding:1.2rem 2.5rem;">
+      <div class="divider" style="margin:0;"><div class="divider-line"></div><div class="divider-text">Thanaweya Amma — Egyptian Ministry Curriculum 2025/2026</div><div class="divider-line"></div></div>
+    </div>
+
+    <div class="mentor-card reveal">
+      <div class="mentor-board">Thanaweya Biology</div>
+      <div class="mentor-name">Prof. Atlas</div>
+      <div class="mentor-subject">Egyptian Ministry · El-Moasser Aligned</div>
+      <p class="mentor-desc">Regal, authoritative, deeply familiar with every Ministry Book trap from 2021–2025. Turns complex systems into obvious concepts.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Keyword Hunter</span><span class="mentor-tag">Bridge Protocol</span><span class="mentor-tag">30-sec Recap</span></div>
+    </div>
+    <div class="mentor-card reveal reveal-delay-1">
+      <div class="mentor-board">Thanaweya Chemistry</div>
+      <div class="mentor-name">The Alchemist</div>
+      <div class="mentor-subject">Egyptian Ministry · Organic · Electrochemistry</div>
+      <p class="mentor-desc">Observations before equations. Colors, precipitates, and gas tests — always stated before the chemistry is explained.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Observation Trigger</span><span class="mentor-tag">Organic Roadmap</span><span class="mentor-tag">Reaction Bridge</span></div>
+    </div>
+    <div class="mentor-card reveal reveal-delay-2">
+      <div class="mentor-board">Thanaweya Physics</div>
+      <div class="mentor-name">The Architect</div>
+      <div class="mentor-subject">Egyptian Ministry · KVL · EM Induction</div>
+      <p class="mentor-desc">Every formula, every unit, every sign convention. The Architect makes the mathematics write itself once the physics is clear.</p>
+      <div class="mentor-tags"><span class="mentor-tag">Calculation Audit</span><span class="mentor-tag">Unit Guardian</span><span class="mentor-tag">Graph Logic</span></div>
+    </div>
+    <div class="mentor-card wide reveal reveal-delay-3">
+      <div>
+        <div class="mentor-board">Thanaweya Mathematics</div>
+        <div class="mentor-name">The Grandmaster</div>
+        <div class="mentor-subject">Egyptian Ministry · Calculus · Solid Geometry · Mechanics</div>
+        <p class="mentor-desc" style="max-width:520px;">Six branch frameworks, a dedicated trap checklist for every chapter, and Casio ClassWiz shortcuts for MCQs. The strategic mind behind the 100%.</p>
+      </div>
+      <div class="mentor-tags"><span class="mentor-tag">Branch Linker</span><span class="mentor-tag">MCQ Shortcuts</span><span class="mentor-tag">Trap Library</span><span class="mentor-tag">Solid Geometry</span><span class="mentor-tag">Calculus</span><span class="mentor-tag">Mechanics</span></div>
+    </div>
+
+    <div class="mentor-card bonus reveal">
+      <div class="bonus-badge"><div class="bonus-badge-text">Free<br>Bonus<br>✦</div></div>
+      <div>
+        <div class="mentor-board">Memory Engineering</div>
+        <div class="mentor-name">The Anki Architect</div>
+        <div class="mentor-subject">Spaced Repetition · Active Recall · Cloze Deletions</div>
+        <p class="mentor-desc">Transforms any mentor explanation into import-ready Anki flashcards using exact mark scheme language. Included free with every bundle.</p>
+        <div class="mentor-tags"><span class="mentor-tag">Cloze Format</span><span class="mentor-tag">Mark Scheme Language</span><span class="mentor-tag">Trap Card Flags</span><span class="mentor-tag">Exam Timeline Settings</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="section-header reveal">
+    <span class="section-tag">The Process</span>
+    <h2 class="section-title">Simple.<br><em>Immediate.</em><br>Effective.</h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal"><div class="step-number" data-n="01">01</div><div class="step-title">Choose Your Plan</div><p class="step-desc">Semester access or monthly — pay via InstaPay or Vodafone Cash. No card needed.</p></div>
+    <div class="step reveal reveal-delay-1"><div class="step-number" data-n="02">02</div><div class="step-title">Get Your Login</div><p class="step-desc">Your account is created within minutes. Credentials arrive directly — no waiting.</p></div>
+    <div class="step reveal reveal-delay-2"><div class="step-number" data-n="03">03</div><div class="step-title">Start Learning</div><p class="step-desc">Log in, pick your mentor, ask anything. Mark scheme answers — instantly, at 3am if needed.</p></div>
+  </div>
+</section>
+
+<div class="quote-section">
+  <span class="quote-mark">"</span>
+  <p class="quote-text">The best private tutor you've ever had — except available the night before your exam, at 3am, and never tired of your questions.</p>
+  <p class="quote-arabic">المدرس الخاص الذي لا ينام</p>
+</div>
+
+<section class="pricing" id="pricing">
+  <div class="section-header reveal" style="text-align:center;">
+    <span class="section-tag" style="display:block;text-align:center;">Pricing</span>
+    <h2 class="section-title" style="max-width:100%;text-align:center;">Choose your<br><em>commitment.</em></h2>
+    <p style="font-size:0.85rem;color:var(--text-dim);margin-top:1rem;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;">Semester access for full-year dedication. Monthly for flexibility. Both include the Anki Architect free.</p>
+  </div>
+
+  <div class="pricing-tabs">
+    <button class="pricing-tab active" onclick="switchTab('semester',this)">Full Semester</button>
+    <button class="pricing-tab" onclick="switchTab('monthly',this)">Month by Month</button>
+  </div>
+
+  <!-- SEMESTER -->
+  <div class="pricing-panel active" id="tab-semester">
+    <div class="semester-grid reveal">
+
+      <div class="pricing-card featured">
+        <div class="pricing-tier">IGCSE Bundle</div>
+        <div class="pricing-name">The IGCSE Set</div>
+        <p class="pricing-desc">All four IGCSE mentors. One payment. Full 5-month access through your entire exam season.</p>
+        <div class="pricing-price">
+          <div class="price-amount"><span class="price-currency">LE</span>1,400</div>
+          <div class="price-period">one-time · 5-month access</div>
+          <div class="price-original">LE 1,750 over 5 monthly payments</div>
+          <div class="price-saving">Save LE 350</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Prof. Andrew — IGCSE Biology</li>
+          <li>Prof. Antoine — IGCSE Chemistry</li>
+          <li>Prof. Erwin — IGCSE Physics</li>
+          <li>Prof. Archimedes — IGCSE Math</li>
+          <li>Anki Architect — Free Bonus</li>
+          <li>Cambridge &amp; Edexcel boards</li>
+          <li>Gemini Pro credits + Flash fallback</li>
+          <li>Need more credits? Contact us</li>
+        </ul>
+        <a href="#contact" class="pricing-cta solid">Get IGCSE Access</a>
+      </div>
+
+      <div class="pricing-card">
+        <div class="pricing-tier">Thanaweya Bundle</div>
+        <div class="pricing-name">The Thanaweya Set</div>
+        <p class="pricing-desc">All four Thanaweya Amma mentors built for the Egyptian Ministry curriculum. One payment, 5-month access.</p>
+        <div class="pricing-price">
+          <div class="price-amount"><span class="price-currency">LE</span>1,100</div>
+          <div class="price-period">one-time · 5-month access</div>
+          <div class="price-original">LE 1,375 over 5 monthly payments</div>
+          <div class="price-saving">Save LE 275</div>
+        </div>
+        <ul class="pricing-features">
+          <li>Prof. Atlas — Biology</li>
+          <li>The Alchemist — Chemistry</li>
+          <li>The Architect — Physics</li>
+          <li>The Grandmaster — Math</li>
+          <li>Anki Architect — Free Bonus</li>
+          <li>El-Moasser aligned</li>
+          <li>Gemini Pro credits + Flash fallback</li>
+          <li>Need more credits? Contact us</li>
+        </ul>
+        <a href="#contact" class="pricing-cta outline">Get Thanaweya Access</a>
+      </div>
+
+      <div class="pricing-card" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center;text-align:center;gap:1rem;padding:3rem 2rem;">
+        <div class="pricing-tier" style="text-align:center;">For Tutors &amp; Centres</div>
+        <div class="pricing-name" style="font-size:1.6rem;">Institutions</div>
+        <p class="pricing-desc" style="margin-bottom:0;">Teaching both IGCSE and Thanaweya students? We offer multi-board, multi-user licensing for tutoring centres and private tutors.</p>
+        <div style="width:40px;height:1px;background:var(--border);margin:0.5rem auto;"></div>
+        <p style="font-size:0.78rem;color:var(--purple);letter-spacing:0.08em;">Custom pricing · All 9 mentors · Multiple accounts</p>
+        <a href="#contact" class="pricing-cta outline" style="margin-top:0.5rem;">Contact for Pricing</a>
+      </div>
+
+    </div>
+    <p class="individual-note" style="max-width:1100px;margin:2rem auto 0;">Individual subjects also available — IGCSE <strong>LE 225/subject</strong> · Thanaweya <strong>LE 150/subject</strong> · Custom bundles (3+ subjects) at a discount · Contact us on Telegram.</p>
+  </div>
+
+  <!-- MONTHLY -->
+  <div class="pricing-panel" id="tab-monthly">
+    <div class="monthly-intro reveal">
+      <p>Not ready to commit to the full semester? Start month by month — <strong>cancel anytime</strong>, no questions asked. Renewed each month via InstaPay or Vodafone Cash.<br><br><strong>Tip:</strong> Semester access works out 30–40% cheaper. If you're serious about your exams, it's the smarter investment.</p>
+    </div>
+    <div class="monthly-grid reveal">
+      <div class="monthly-card featured">
+        <div class="monthly-card-header">
+          <div><div class="monthly-card-title">IGCSE Monthly</div><div class="monthly-card-sub">Cambridge &amp; Edexcel · All 4 subjects</div></div>
+          <div class="monthly-price-block"><div class="monthly-price"><span class="curr">LE</span>350</div><div class="monthly-price-label">per month</div></div>
+        </div>
+        <div class="monthly-card-body">
+          <div class="monthly-subjects"><span class="monthly-subject-tag">Prof. Andrew</span><span class="monthly-subject-tag">Prof. Antoine</span><span class="monthly-subject-tag">Prof. Erwin</span><span class="monthly-subject-tag">Prof. Archimedes</span><span class="monthly-subject-tag">Anki Architect</span></div>
+          <ul class="monthly-perks"><li>All 4 IGCSE mentors included</li><li>Anki Architect free bonus</li><li>Gemini Pro credits monthly</li><li>Flash fallback when Pro credits run out</li><li>Need more? Contact us</li><li>Cancel anytime</li></ul>
+          <p class="monthly-note">Renewed monthly via InstaPay / Vodafone Cash. Access continues until you cancel.</p>
+          <a href="#contact" class="pricing-cta solid">Start This Month</a>
+        </div>
+      </div>
+      <div class="monthly-card">
+        <div class="monthly-card-header">
+          <div><div class="monthly-card-title">Thanaweya Monthly</div><div class="monthly-card-sub">Egyptian Ministry · All 4 subjects</div></div>
+          <div class="monthly-price-block"><div class="monthly-price"><span class="curr">LE</span>275</div><div class="monthly-price-label">per month</div></div>
+        </div>
+        <div class="monthly-card-body">
+          <div class="monthly-subjects"><span class="monthly-subject-tag">Prof. Atlas</span><span class="monthly-subject-tag">The Alchemist</span><span class="monthly-subject-tag">The Architect</span><span class="monthly-subject-tag">The Grandmaster</span><span class="monthly-subject-tag">Anki Architect</span></div>
+          <ul class="monthly-perks"><li>All 4 Thanaweya mentors included</li><li>Anki Architect free bonus</li><li>Gemini Pro credits monthly</li><li>Flash fallback when Pro credits run out</li><li>Need more? Contact us</li><li>Cancel anytime</li></ul>
+          <p class="monthly-note">Renewed monthly via InstaPay / Vodafone Cash. Access continues until you cancel.</p>
+          <a href="#contact" class="pricing-cta outline">Start This Month</a>
+        </div>
+      </div>
+      <div class="monthly-card">
+        <div class="monthly-card-header">
+          <div><div class="monthly-card-title">Single Subject</div><div class="monthly-card-sub">Any one mentor · Your choice</div></div>
+          <div class="monthly-price-block"><div class="monthly-price"><span class="curr">LE</span>170</div><div class="monthly-price-label">per month</div></div>
+        </div>
+        <div class="monthly-card-body">
+          <div class="monthly-subjects"><span class="monthly-subject-tag">Choose any mentor</span></div>
+          <ul class="monthly-perks"><li>One mentor of your choice</li><li>Gemini Pro credits monthly</li><li>Flash fallback included</li><li>Upgrade to bundle anytime</li><li>Cancel anytime</li></ul>
+          <p class="monthly-note">Contact us on Telegram to specify your subject and mentor.</p>
+          <a href="#contact" class="pricing-cta outline">Choose a Subject</a>
+        </div>
+      </div>
+      <div class="monthly-card" style="border-style:dashed;display:flex;flex-direction:column;justify-content:center;text-align:center;">
+        <div class="monthly-card-header" style="justify-content:center;flex-direction:column;align-items:center;text-align:center;">
+          <div><div class="monthly-card-title">Institutions</div><div class="monthly-card-sub">Tutors &amp; Centres · Custom</div></div>
+        </div>
+        <div class="monthly-card-body" style="text-align:center;display:flex;flex-direction:column;flex:1;">
+          <p style="font-size:0.82rem;color:var(--text-dim);line-height:1.8;margin-bottom:1.4rem;">Teaching IGCSE and Thanaweya students? Multi-user licensing available for tutoring centres and private tutors at custom rates.</p>
+          <ul class="monthly-perks" style="text-align:left;">
+            <li>All 9 mentors unlocked</li>
+            <li>Multiple student accounts</li>
+            <li>Both boards covered</li>
+            <li>Custom pricing</li>
+          </ul>
+          <p class="monthly-note" style="margin-top:auto;">Pricing varies by number of accounts and subjects needed.</p>
+          <a href="#contact" class="pricing-cta outline">Contact for Pricing</a>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-compare reveal">
+      <div style="font-size:1.4rem;flex-shrink:0;">💡</div>
+      <p><strong>Semester vs Monthly:</strong> The IGCSE semester bundle (LE 1,400) costs the same as <strong>4 months</strong> of the monthly plan (LE 350/mo). Studying for 5 months? Semester access saves you <strong>LE 350</strong> and gives you the full season covered.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="section-header reveal">
+    <span class="section-tag">Questions</span>
+    <h2 class="section-title">Everything<br>you need to<br><em>know.</em></h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-item reveal"><div class="faq-q">Semester or monthly — which should I choose?</div><p class="faq-a">Semester is a one-time payment covering 5 months — perfect for exam season. The IGCSE semester (LE 1,400) saves LE 350 compared to 5 monthly payments. Monthly is best if you're unsure how long you need access.</p></div>
+    <div class="faq-item reveal reveal-delay-1"><div class="faq-q">What is the Gemini Pro credit system?</div><p class="faq-a">Each plan includes a monthly allowance of Gemini Pro credits — the most capable model tier. When Pro credits run out, you automatically continue on Gemini Flash at no extra cost. If you regularly need more Pro credits, just contact us on Telegram and we'll work something out.</p></div>
+    <div class="faq-item reveal reveal-delay-2"><div class="faq-q">Is this just ChatGPT with a different name?</div><p class="faq-a">No. Each mentor is built on a deeply specialized system that knows your specific syllabus, exam traps, mark scheme language, and question patterns from 2016–2025. Generic AI cannot do this.</p></div>
+    <div class="faq-item reveal reveal-delay-3"><div class="faq-q">How do I pay and get access?</div><p class="faq-a">Payment via InstaPay or Vodafone Cash — no card needed. Contact us on Telegram, pay, and receive your login credentials within minutes.</p></div>
+    <div class="faq-item reveal"><div class="faq-q">What exam boards are covered?</div><p class="faq-a">IGCSE mentors cover Cambridge (CAIE) and Pearson Edexcel. Thanaweya mentors cover the Egyptian Ministry curriculum, El-Moasser aligned. Cambridge 0971 students — same syllabus as 0620, fully supported.</p></div>
+    <div class="faq-item reveal reveal-delay-1"><div class="faq-q">What is the Anki Architect?</div><p class="faq-a">A memory tool that converts any mentor explanation into Anki flashcards using exact mark scheme language. Flags trap points, recommends settings for your exam timeline. Included free with every plan.</p></div>
+  </div>
+</section>
+
+<section class="cta-footer" id="contact">
+  <h2>Your A* is<br><em>waiting.</em></h2>
+  <p>Stop studying harder. Start studying smarter. Your elite mentor is ready right now.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="https://wa.me/201000019354" class="btn-primary">WhatsApp Us</a>
+    <a href="https://t.me/ProjectZenithEG" class="btn-secondary">Contact on Telegram</a>
+  </div>
+  <p style="margin-top:2rem;font-size:0.8rem;color:rgba(155,109,255,0.6);letter-spacing:0.1em;"> او فودافون كاش · بدون بطاقة بنكيه InstaPay الدفع عن طريق</p>
+</section>
+
+<footer>
+  <a href="#" style="display:flex;align-items:center;gap:8px;text-decoration:none;flex-shrink:0;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="28" height="28" style="flex-shrink:0;">
+      <defs>
+        <marker id="footer-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M2 1L8 5L2 9" fill="none" stroke="#c4a8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </marker>
+      </defs>
+      <rect width="44" height="44" rx="10" fill="#13111e"/>
+      <line x1="9" y1="11" x2="35" y2="11" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="35" y1="11" x2="9"  y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="9" y1="33" x2="35" y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="13" y1="27" x2="29" y2="16" stroke="#c4a8ff" stroke-width="3" stroke-linecap="round" marker-end="url(#footer-arr)"/>
+    </svg>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple);">Project<span style="color:rgba(240,238,248,0.4);"> Zenith</span></span>
+  </a>
+  <p class="footer-copy">© 2026 Project Zenith. All rights reserved.</p>
+  <ul class="footer-links"><li><a href="#mentors">Mentors</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li><li><a href="privacy.html">Privacy</a></li><li><a href="terms.html">Terms</a></li><li><a href="acceptable-use.html">Acceptable Use</a></li></ul>
+</footer>
+
+<script>
+  function switchTab(tab, btn) {
+    document.querySelectorAll('.pricing-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.pricing-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    btn.classList.add('active');
+  }
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+</script>
+</body>
+</html>

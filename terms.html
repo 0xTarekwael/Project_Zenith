@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Project Zenith</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  
+  html, body { overflow-x: hidden; }
+:root {
+    --black: #07070a; --white: #f0eef8; --purple: #9b6dff; --purple-light: #c4a8ff;
+    --purple-dim: #5c3faa; --surface: #0d0c14; --surface-2: #13111e;
+    --border: rgba(155,109,255,0.18); --border-dim: rgba(155,109,255,0.08);
+    --text-dim: rgba(240,238,248,0.4); --text-mid: rgba(240,238,248,0.65);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.8}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;background:rgba(7,7,10,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dim)}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);text-decoration:none}
+  .nav-logo span{color:var(--white)}
+  .nav-back{color:var(--text-mid);text-decoration:none;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
+  .nav-back:hover{color:var(--purple)}
+  .page-header{padding:10rem 4rem 4rem;border-bottom:1px solid var(--border)}
+  .page-tag{font-size:0.66rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--purple);margin-bottom:1rem;display:block}
+  .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.05;margin-bottom:1rem}
+  .page-title em{font-style:italic;color:var(--purple)}
+  .page-meta{font-size:0.78rem;color:var(--text-dim);letter-spacing:0.08em}
+  .content{max-width:760px;padding:5rem 4rem}
+  h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--white);margin:3rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border-dim)}
+  h2:first-of-type{margin-top:0}
+  p{font-size:0.88rem;color:var(--text-mid);margin-bottom:1.2rem;line-height:1.9}
+  ul{margin:0 0 1.2rem 0;padding:0;list-style:none}
+  ul li{font-size:0.88rem;color:var(--text-mid);padding:0.35rem 0 0.35rem 1.4rem;position:relative;line-height:1.75}
+  ul li::before{content:'✦';position:absolute;left:0;color:var(--purple);font-size:0.45rem;top:0.65rem}
+  .highlight-box{background:var(--surface);border:1px solid var(--border);padding:1.5rem 2rem;margin:1.5rem 0}
+  .highlight-box p{margin-bottom:0;color:var(--text-mid)}
+  .highlight-box strong{color:var(--purple);font-weight:400}
+  .warning-box{background:rgba(155,109,255,0.05);border:1px solid var(--purple);padding:1.5rem 2rem;margin:1.5rem 0}
+  .warning-box p{margin-bottom:0;color:var(--text-mid)}
+  .warning-box strong{color:var(--purple-light);font-weight:500}
+  strong{color:var(--white);font-weight:500}
+  a{color:var(--purple);text-decoration:none;transition:color 0.3s}
+  a:hover{color:var(--purple-light)}
+  footer{padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:4rem}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple)}
+  .footer-logo span{color:var(--text-dim)}
+  .footer-links{margin: 0; padding: 0; align-items: center; display:flex;gap:2rem;list-style:none}
+  .footer-links a{font-size:0.7rem;color:var(--text-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s}
+  .footer-links a:hover{color:var(--purple)}
+  .footer-copy{margin: 0; font-size:0.7rem;color:var(--text-dim)}
+  @media(max-width:768px){nav{padding:1.5rem 2rem}.page-header{padding:8rem 2rem 3rem}.content{padding:3rem 2rem}footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="32" height="32" style="flex-shrink:0;">
+      <defs><marker id="t-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#c4a8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect width="44" height="44" rx="10" fill="#13111e"/>
+      <line x1="9" y1="11" x2="35" y2="11" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="35" y1="11" x2="9"  y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="9" y1="33" x2="35" y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="13" y1="27" x2="29" y2="16" stroke="#c4a8ff" stroke-width="3" stroke-linecap="round" marker-end="url(#t-arr)"/>
+    </svg>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);">Project<span style="color:var(--white);"> Zenith</span></span>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <span class="page-tag">Legal</span>
+  <h1 class="page-title">Terms of <em>Service</em></h1>
+  <p class="page-meta">Last updated: March 2026 · Effective immediately</p>
+</div>
+
+<div class="content">
+
+  <div class="highlight-box">
+    <p><strong>Plain English summary:</strong> Use the platform honestly, one account per person, for studying only. Don't try to extract our system prompts or share your login. The AI mentors are study tools — they are not a guarantee of exam results. We can terminate accounts that violate these terms.</p>
+  </div>
+
+  <h2>1. Acceptance of Terms</h2>
+  <p>By purchasing access to or using Project Zenith ("the Platform"), you agree to be bound by these Terms of Service. If you do not agree, do not use the platform. These terms apply to all users — students, parents purchasing on behalf of students, and any other users.</p>
+
+  <h2>2. What Project Zenith Provides</h2>
+  <p>Project Zenith provides access to AI-powered tutoring mentors designed to assist with IGCSE (Cambridge and Edexcel) and Egyptian Thanaweya Amma exam preparation. The platform is powered by Google's Gemini AI API and delivered through a web interface.</p>
+
+  <div class="warning-box">
+    <p><strong>Important limitation:</strong> Project Zenith AI mentors are educational study tools. They are not a substitute for qualified human teachers, official school instruction, or past paper marking by certified examiners. We make no guarantee that use of the platform will result in any specific exam grade or outcome.</p>
+  </div>
+
+  <h2>3. Accounts and Access</h2>
+  <ul>
+    <li><strong>One account per person.</strong> Each purchase grants access to one individual user. Sharing login credentials with other students is a violation of these terms and will result in immediate account termination without refund.</li>
+    <li><strong>Account security.</strong> You are responsible for keeping your login credentials confidential. Notify us immediately if you suspect unauthorized access to your account.</li>
+    <li><strong>Accurate information.</strong> You agree to provide accurate contact information when purchasing. Fraudulent purchases will be reversed.</li>
+    <li><strong>Age.</strong> Users under 18 should have a parent or guardian review these terms before purchasing.</li>
+  </ul>
+
+  <h2>4. Payments and Plans</h2>
+
+  <p><strong>Semester Plans (one-time payment/Semester):</strong> Payment grants permanent access to your purchased mentors with no expiry date. Access continues For the entirity of the Semester (5 months) unless your account is terminated for violations of these terms.</p>
+
+  <p><strong>Monthly Plans:</strong> Payment grants access for one calendar month from the date of purchase. Monthly plans are not automatically renewed — you must contact us to renew each month. If you do not renew, access will be suspended at the end of your paid period. Your data is retained for 30 days after suspension before deletion.</p>
+
+  <p><strong>Payment methods:</strong> We accept InstaPay and Vodafone Cash only. We do not accept card payments, bank transfers, or cryptocurrency.</p>
+
+  <div class="highlight-box">
+    <p><strong>Refund policy:</strong> Due to the digital and immediately-accessible nature of the product, all sales are final. We do not offer refunds after access has been granted. If you experience a technical issue preventing access, contact us within 48 hours of purchase and we will resolve it or issue a credit.</p>
+  </div>
+
+  <h2>5. Acceptable Use</h2>
+  <p>You agree to use the platform only for its intended purpose: exam preparation and educational study. You specifically agree not to:</p>
+  <ul>
+    <li>Attempt to extract, reverse-engineer, or reproduce the AI mentor system prompts or configurations</li>
+    <li>Share, resell, or redistribute access to the platform or its content</li>
+    <li>Use the platform to generate content for purposes other than personal study (e.g., academic fraud, submitting AI-generated work as your own to an institution)</li>
+    <li>Attempt to circumvent, hack, or disrupt the platform's technical infrastructure</li>
+    <li>Use the platform to generate harmful, abusive, or illegal content</li>
+    <li>Impersonate another user or create multiple accounts</li>
+  </ul>
+
+  <h2>5.1 AI Model Tiers & Fair Use Policy</h2>
+  <p>Project Zenith uses Google's Gemini API. Each plan includes a monthly allowance of <strong>Gemini Pro credits</strong> — the highest capability tier. Once your Pro credits are consumed, sessions automatically continue on <strong>Gemini Flash</strong> at no additional cost. Both tiers are capable of handling all exam preparation needs; Pro simply offers higher performance for complex multi-step problems.</p>
+
+  <div class="highlight-box">
+    <p><strong>Credit tiers:</strong><br>
+    — <strong>Gemini Pro:</strong> Included monthly allowance per plan. Best for complex explanations and multi-step problems.<br>
+    — <strong>Gemini Flash:</strong> Automatic fallback after Pro credits are exhausted. Fast, capable, fully functional for study sessions.<br>
+    — <strong>Need more Pro credits?</strong> Contact us on Telegram — we will work something out for students with intensive study needs.</p>
+  </div>
+
+  <p>Sessions are intended for genuine personal study use. The following soft limits apply to protect service quality for all users:</p>
+
+  <div class="highlight-box">
+    <p><strong>Semester plans:</strong> Up to <strong>150 sessions</strong> over the 5-month period.<br>
+    <strong>Monthly bundle plans:</strong> Up to <strong>30 sessions per month.</strong><br>
+    <strong>Single subject monthly:</strong> Up to <strong>15 sessions per month.</strong></p>
+  </div>
+
+  <p>These limits are generous and cover all realistic study patterns. They exist solely to protect against automated abuse. If you are approaching a limit during exam season, contact us on Telegram before reaching it — legitimate heavy study use will always be accommodated.</p>
+  <p>Accounts showing usage patterns consistent with automated access, API scraping, or non-human interaction will be suspended immediately without refund, regardless of whether the session limit has been reached.</p>
+
+  <h2>6. Intellectual Property</h2>
+  <p>All AI mentor system prompts, frameworks, content, branding, and platform design are the intellectual property of Project Zenith. You may not copy, reproduce, distribute, or create derivative works from any part of the platform without explicit written permission.</p>
+  <p>Conversations you have with AI mentors remain your own. We do not claim ownership of your questions or the content you provide.</p>
+
+  <h2>7. AI Limitations and Disclaimer</h2>
+  <p>AI mentors can make mistakes. While our mentors are designed with extensive subject-specific knowledge and exam awareness, they are not infallible. Specifically:</p>
+  <ul>
+    <li>AI responses may occasionally contain factual errors, outdated information, or misinterpretations</li>
+    <li>Syllabus details may change between exam sessions — always verify critical information against your official syllabus document</li>
+    <li>The AI cannot physically see diagrams or equations unless you describe them in text or upload an image</li>
+    <li>AI mentor responses do not constitute official mark scheme answers — they are study guidance only</li>
+  </ul>
+  <p>Project Zenith is not liable for any exam results, academic outcomes, or decisions made based on AI mentor responses.</p>
+
+  <h2>8. Termination</h2>
+  <p>We reserve the right to terminate or suspend any account at our discretion if we determine that these terms have been violated. In cases of clear violation (account sharing, prompt extraction attempts, platform abuse), termination will be immediate and without refund.</p>
+  <p>You may cancel a monthly plan at any time by contacting us on Telegram before your renewal date. Semester plan holders may request account deletion at any time — no refund is issued for unused access.</p>
+
+  <h2>9. Limitation of Liability</h2>
+  <p>To the maximum extent permitted by applicable law, Project Zenith shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the platform, including but not limited to: exam failure, academic consequences, data loss, or interruption of service.</p>
+  <p>Our total liability to you for any claim arising from use of the platform shall not exceed the amount you paid for your current plan.</p>
+
+  <h2>10. Service Availability</h2>
+  <p>We aim to maintain platform availability at all times but do not guarantee uninterrupted access. Scheduled maintenance, technical issues, or third-party outages (including third-party Large Language Model providers' APIs) may cause temporary unavailability. We will notify users of planned downtime via Telegram where possible.</p>
+
+  <h2>11. Changes to These Terms</h2>
+  <p>We may update these terms as the platform grows. We will notify active users of material changes via Telegram at least 7 days before they take effect. Continued use after notification constitutes acceptance.</p>
+
+  <h2>12. Governing Law</h2>
+  <p>These terms are governed by the laws of the Arab Republic of Egypt. Any disputes shall be subject to the exclusive jurisdiction of Egyptian courts.</p>
+
+  <h2>13. Contact</h2>
+  <p>For any questions regarding these terms: <a href="https://t.me/ProjectZenithEG">Telegram @projectzenithEG</a></p>
+
+
+  <h2>Fair Use & Compute Budgets</h2>
+  <p>Project Zenith operates on a fair-use compute model, not an "unlimited" usage model. Subscriptions grant access to the AI mentors up to a predetermined monthly token and compute budget designed to comfortably accommodate regular, heavy academic study.</p>
+
+  <h2>Graceful Degradation (Model Routing)</h2>
+  <p>To ensure platform stability and protect infrastructure, accounts exhibiting extreme or high-volume usage may be automatically routed to our high-speed, standard-tier AI models after exceeding premium fair-use thresholds. Project Zenith does not guarantee continuous access to any specific underlying AI model version. This transition is designed to maintain your access to the platform without interruption.</p>
+
+  <h2>No Refunds for Exhausted Quotas</h2>
+  <p>If a user consumes their allocated premium compute budget rapidly within the billing cycle, they will continue to have access via the fallback models. Users are not entitled to partial or prorated refunds if they exhaust their primary quota before the end of the billing period.</p>
+
+  <h2>Academic Disclaimer (No Guarantees)</h2>
+  <p>Project Zenith is an educational aid and revision tool, not a substitute for formal education. While our AI models are heavily trained on mark schemes, we do not guarantee specific grades. Project Zenith and its operators are not legally liable for failed exams, lost marks, university rejections, or academic disciplinary actions resulting from the use of, or reliance on, our AI-generated answers.</p>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Project<span> Zenith</span></div>
+  <p class="footer-copy">© 2026 Project Zenith. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="acceptable-use.html">Acceptable Use</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>

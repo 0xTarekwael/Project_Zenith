@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acceptable Use Policy — Project Zenith</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  
+  html, body { overflow-x: hidden; }
+:root {
+    --black: #07070a; --white: #f0eef8; --purple: #9b6dff; --purple-light: #c4a8ff;
+    --purple-dim: #5c3faa; --surface: #0d0c14; --surface-2: #13111e;
+    --border: rgba(155,109,255,0.18); --border-dim: rgba(155,109,255,0.08);
+    --text-dim: rgba(240,238,248,0.4); --text-mid: rgba(240,238,248,0.65);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;line-height:1.8}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.5rem 4rem;background:rgba(7,7,10,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-dim)}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);text-decoration:none}
+  .nav-logo span{color:var(--white)}
+  .nav-back{color:var(--text-mid);text-decoration:none;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
+  .nav-back:hover{color:var(--purple)}
+  .page-header{padding:10rem 4rem 4rem;border-bottom:1px solid var(--border)}
+  .page-tag{font-size:0.66rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--purple);margin-bottom:1rem;display:block}
+  .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.05;margin-bottom:1rem}
+  .page-title em{font-style:italic;color:var(--purple)}
+  .page-meta{font-size:0.78rem;color:var(--text-dim);letter-spacing:0.08em}
+  .content{max-width:760px;padding:5rem 4rem}
+  h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;color:var(--white);margin:3rem 0 1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border-dim)}
+  h2:first-of-type{margin-top:0}
+  p{font-size:0.88rem;color:var(--text-mid);margin-bottom:1.2rem;line-height:1.9}
+  ul{margin:0 0 1.2rem 0;padding:0;list-style:none}
+  ul li{font-size:0.88rem;color:var(--text-mid);padding:0.35rem 0 0.35rem 1.4rem;position:relative;line-height:1.75}
+  ul li::before{content:'✦';position:absolute;left:0;color:var(--purple);font-size:0.45rem;top:0.65rem}
+  ul li.no::before{color:#ff6b6b}
+  .highlight-box{background:var(--surface);border:1px solid var(--border);padding:1.5rem 2rem;margin:1.5rem 0}
+  .highlight-box p{margin-bottom:0;color:var(--text-mid)}
+  .highlight-box strong{color:var(--purple);font-weight:400}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+  .col-box{background:var(--surface);border:1px solid var(--border);padding:1.5rem}
+  .col-box h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:1rem;color:var(--white)}
+  .col-box.allowed h3{color:#7dff9b}
+  .col-box.allowed{border-color:rgba(125,255,155,0.2);background:rgba(125,255,155,0.03)}
+  .col-box.allowed ul li::before{color:#7dff9b}
+  .col-box.not-allowed h3{color:#ff6b6b}
+  .col-box.not-allowed{border-color:rgba(255,107,107,0.2);background:rgba(255,107,107,0.03)}
+  .col-box.not-allowed ul li::before{color:#ff6b6b}
+  strong{color:var(--white);font-weight:500}
+  a{color:var(--purple);text-decoration:none;transition:color 0.3s}
+  a:hover{color:var(--purple-light)}
+  footer{padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;margin-top:4rem}
+  .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--purple)}
+  .footer-logo span{color:var(--text-dim)}
+  .footer-links{margin: 0; padding: 0; align-items: center; display:flex;gap:2rem;list-style:none}
+  .footer-links a{font-size:0.7rem;color:var(--text-dim);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.3s}
+  .footer-links a:hover{color:var(--purple)}
+  .footer-copy{margin: 0; font-size:0.7rem;color:var(--text-dim)}
+  @media(max-width:768px){nav{padding:1.5rem 2rem}.page-header{padding:8rem 2rem 3rem}.content{padding:3rem 2rem}.two-col{grid-template-columns:1fr}footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="32" height="32" style="flex-shrink:0;">
+      <defs><marker id="a-arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#c4a8ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
+      <rect width="44" height="44" rx="10" fill="#13111e"/>
+      <line x1="9" y1="11" x2="35" y2="11" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="35" y1="11" x2="9"  y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="9" y1="33" x2="35" y2="33" stroke="#2e1f6e" stroke-width="4.5" stroke-linecap="round"/>
+      <line x1="13" y1="27" x2="29" y2="16" stroke="#c4a8ff" stroke-width="3" stroke-linecap="round" marker-end="url(#a-arr)"/>
+    </svg>
+    <span style="font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--purple);">Project<span style="color:var(--white);"> Zenith</span></span>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-header">
+  <span class="page-tag">Legal</span>
+  <h1 class="page-title">Acceptable <em>Use Policy</em></h1>
+  <p class="page-meta">Last updated: March 2026 · Effective immediately</p>
+</div>
+
+<div class="content">
+
+  <div class="highlight-box">
+    <p><strong>Plain English summary:</strong> Use Project Zenith to study for your exams. Don't try to break it, exploit it, share your account, or extract our work. Treat the AI mentors as you would a real teacher — with respect and for their intended purpose.</p>
+  </div>
+
+  <h2>1. Purpose of This Policy</h2>
+  <p>This Acceptable Use Policy defines what you may and may not do when using Project Zenith. It exists to protect the platform, protect other users, and ensure the AI mentors remain effective study tools for everyone.</p>
+  <p>Violations of this policy may result in immediate account termination without refund, as detailed in our <a href="terms.html">Terms of Service</a>.</p>
+
+  <h2>2. Quick Reference</h2>
+
+  <div class="two-col">
+    <div class="col-box allowed">
+      <h3>✓ Allowed</h3>
+      <ul>
+        <li>Asking exam-related questions</li>
+        <li>Uploading your own notes or past papers</li>
+        <li>Using the Anki Architect to make flashcards</li>
+        <li>Studying multiple subjects in one session</li>
+        <li>Asking the same question multiple times</li>
+        <li>Using the platform at any hour</li>
+        <li>Sharing your results or feedback with us</li>
+      </ul>
+    </div>
+    <div class="col-box not-allowed">
+      <h3>✗ Not Allowed</h3>
+      <ul>
+        <li>Sharing your login with others</li>
+        <li>Trying to extract system prompts</li>
+        <li>Submitting AI responses as your own schoolwork</li>
+        <li>Reselling or redistributing access</li>
+        <li>Using the platform for non-study purposes</li>
+        <li>Attempting to hack or disrupt the platform</li>
+        <li>Creating multiple accounts</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>3. Permitted Uses</h2>
+  <p>You may use Project Zenith to:</p>
+  <ul>
+    <li>Ask questions about topics covered by your registered syllabus (IGCSE or Thanaweya Amma)</li>
+    <li>Request explanations, worked examples, and mark scheme breakdowns</li>
+    <li>Upload images of past paper questions, diagrams, or your own notes for analysis</li>
+    <li>Generate Anki flashcards from mentor explanations for personal study</li>
+    <li>Prepare for exams by practising under timed or exam-style conditions</li>
+    <li>Ask for feedback on your written answers to exam questions</li>
+  </ul>
+
+  <h2>4. Prohibited Uses</h2>
+
+  <p><strong>4.1 Account Sharing</strong><br>
+  Each account is for a single individual user only. You may not share your login credentials, username, or password with any other person. If we detect simultaneous logins from different devices or locations suggesting account sharing, the account will be suspended pending investigation.</p>
+
+  <p><strong>4.2 Prompt Extraction</strong><br>
+  You may not attempt to extract, reproduce, or reverse-engineer the AI mentor system prompts, configurations, or instructional frameworks through any means — including but not limited to jailbreaking attempts, prompt injection, or repeated probing questions designed to reveal system instructions. These represent our core intellectual property.</p>
+
+  <p><strong>4.3 Academic Fraud</strong><br>
+  You may not submit AI-generated responses from Project Zenith as your own original work to any school, examination board, or educational institution. Using AI assistance for coursework, internal assessments, or any graded work in a way that violates your institution's academic integrity policy is your responsibility and not something Project Zenith endorses or supports.</p>
+
+  <p><strong>4.4 Commercial Exploitation</strong><br>
+  You may not resell, sublicense, redistribute, or otherwise commercialize access to the platform or its content. You may not use the platform to build a competing product or service.</p>
+
+  <p><strong>4.5 Harmful or Illegal Content</strong><br>
+  You may not use the AI mentors to generate content that is harmful, abusive, harassing, discriminatory, or illegal. The mentors are designed to redirect off-topic requests, but attempts to circumvent this will result in account termination.</p>
+
+  <p><strong>4.6 Technical Interference</strong><br>
+  You may not attempt to access, probe, or disrupt the platform's infrastructure, servers, or underlying systems. This includes automated scraping, denial of service attempts, or any unauthorized access to backend systems.</p>
+
+  <h2>5. Responsible AI Use</h2>
+  <p>Project Zenith's AI mentors are powerful study tools when used responsibly. We encourage you to:</p>
+  <ul>
+    <li><strong>Verify important information</strong> — always cross-check critical syllabus details against your official textbook or past papers</li>
+    <li><strong>Think critically</strong> — treat AI responses as a starting point for understanding, not an infallible authority</li>
+    <li><strong>Report errors</strong> — if a mentor gives you an answer that seems wrong, tell us via Telegram. This helps us improve the platform for everyone</li>
+    <li><strong>Use it as a supplement</strong> — the mentors work best alongside, not instead of, classroom learning and past paper practice</li>
+  </ul>
+
+  <h2>6. Sensitive Information</h2>
+  <p>Do not share the following in conversations with AI mentors:</p>
+  <ul>
+    <li>Your national ID number or passport details</li>
+    <li>Bank account details or financial information</li>
+    <li>Passwords or security credentials</li>
+    <li>Sensitive personal information about yourself or others</li>
+  </ul>
+  <p>Conversation content is processed by third-party Large Language Model providers' APIs. See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+
+  <h2>7. Reporting Violations</h2>
+  <p>If you become aware of another user violating this policy — particularly account sharing or prompt extraction attempts — please report it to us on Telegram. We take the integrity of the platform seriously and investigate all reports.</p>
+
+  <h2>8. Enforcement</h2>
+  <p>Violations of this policy will result in one or more of the following, depending on severity:</p>
+  <ul>
+    <li>A warning message via Telegram</li>
+    <li>Temporary suspension of account access</li>
+    <li>Permanent termination of account without refund</li>
+    <li>In cases of serious violations (fraud, hacking attempts), referral to relevant authorities</li>
+  </ul>
+
+  <h2>9. Contact</h2>
+  <p>Questions about this policy or reports of violations: <a href="https://t.me/ProjectZenithEG">Telegram @ProjectZenithEG</a></p>
+
+
+  <h2>Prohibited AI Interactions (Jailbreaking & Injection)</h2>
+  <p>You must interact with the AI mentors as intended for academic purposes. It is strictly prohibited to attempt "prompt injection," "jailbreaking," or any technique designed to extract the AI's underlying system instructions, bypass its safety guardrails, or force it to adopt an unauthorized persona (e.g., "Developer Mode").</p>
+
+  <h2>Automated Scraping & Bot Abuse</h2>
+  <p>The use of automated scripts, bots, headless browsers, or any software designed to mass-query the AI or scrape its responses is strictly forbidden. This severely impacts our compute budgets and degrades the experience for human students. Any account detected using automated tools will be permanently terminated without a refund.</p>
+
+  <h2>Strict Subject Domain Enforcement</h2>
+  <p>Project Zenith mentors are specialized academic tools. You may not use the platform to seek real-world medical diagnoses, financial advice, legal counsel, or psychological therapy. The AI is designed strictly for high school syllabus preparation.</p>
+
+</div>
+
+<footer>
+  <div class="footer-logo">Project<span> Zenith</span></div>
+  <p class="footer-copy">© 2026 Project Zenith. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="privacy.html">Privacy</a></li>
+    <li><a href="terms.html">Terms</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
