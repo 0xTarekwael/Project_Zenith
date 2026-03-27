@@ -1,0 +1,19 @@
+# Global directives for all search engines
+User-agent: *
+
+# Allow crawling of the main site and legal pages
+Allow: /
+Allow: /terms
+Allow: /privacy
+Allow: /acceptable-use
+
+# Block sensitive and administrative areas
+# These should also be protected by your Cloudflare Tunnel
+Disallow: /admin/
+Disallow: /config/
+Disallow: /api/
+Disallow: /private/
+Disallow: /router/
+
+# Link to your sitemap to help Google find your pages faster
+Sitemap: https://projectzenith.co/sitemap.xml
